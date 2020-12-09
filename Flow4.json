@@ -1,0 +1,102 @@
+
+[
+    {
+        "id": "b53ae903.7bd818",
+        "type": "tab",
+        "label": "流程1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "ad6ac75b.d96248",
+        "type": "http in",
+        "z": "b53ae903.7bd818",
+        "name": "",
+        "url": "/pin4",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 110,
+        "y": 180,
+        "wires": [
+            [
+                "5aaec961.dc2738"
+            ]
+        ]
+    },
+    {
+        "id": "c87a6b83.babdc8",
+        "type": "rpi-gpio in",
+        "z": "b53ae903.7bd818",
+        "name": "GPIO4",
+        "pin": "7",
+        "intype": "up",
+        "debounce": "25",
+        "read": true,
+        "x": 100,
+        "y": 320,
+        "wires": [
+            [
+                "6287a285.90301c"
+            ]
+        ]
+    },
+    {
+        "id": "6287a285.90301c",
+        "type": "function",
+        "z": "b53ae903.7bd818",
+        "name": "Set GPIO",
+        "func": "global.set(\"GPIO\", msg.payload)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 280,
+        "y": 220,
+        "wires": [
+            [
+                "3428e510.5e00da"
+            ]
+        ]
+    },
+    {
+        "id": "5aaec961.dc2738",
+        "type": "function",
+        "z": "b53ae903.7bd818",
+        "name": "Get GPIO",
+        "func": "msg.payload = global.get(\"GPIO\");\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 260,
+        "y": 100,
+        "wires": [
+            [
+                "fb0f7169.47fec",
+                "3428e510.5e00da"
+            ]
+        ]
+    },
+    {
+        "id": "fb0f7169.47fec",
+        "type": "http response",
+        "z": "b53ae903.7bd818",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 470,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "3428e510.5e00da",
+        "type": "debug",
+        "z": "b53ae903.7bd818",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 490,
+        "y": 200,
+        "wires": []
+    }
+]
