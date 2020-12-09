@@ -1,0 +1,95 @@
+[
+    {
+        "id": "3aaadb66.c89534", 
+        "type": "tab", 
+        "label": "流程2", 
+        "disabled": false, 
+        "info": ""
+    }, 
+    {
+        "id": "d56397a0.b96f38", 
+        "type": "inject", 
+        "z": "3aaadb66.c89534", 
+        "name": "", 
+        "topic": "", 
+        "payload": "timestamp", 
+        "payloadType": "str", 
+        "repeat": "5", 
+        "crontab": "", 
+        "once": true, 
+        "onceDelay": 0.1, 
+        "x": 170, 
+        "y": 200, 
+        "wires": [
+            [
+                "dd74543c.1144b8"
+            ]
+        ]
+    }, 
+    {
+        "id": "dd74543c.1144b8", 
+        "type": "function", 
+        "z": "3aaadb66.c89534", 
+        "name": "Payload", 
+        "func": "msg.headers={
+    deviceKey:\"fTlu10y0aSeLNAdM\"
+};
+return msg;", 
+        "outputs": 1, 
+        "noerr": 0, 
+        "x": 380, 
+        "y": 200, 
+        "wires": [
+            [
+                "fac32c4d.db8f8"
+            ]
+        ]
+    }, 
+    {
+        "id": "fac32c4d.db8f8", 
+        "type": "http request", 
+        "z": "3aaadb66.c89534", 
+        "name": "http request", 
+        "method": "GET", 
+        "ret": "txt", 
+        "paytoqs": false, 
+        "url": "http://api.mediatek.com/mcs/v2/devices/D2ip17N8/datachannels/LEDControl/datapoints.csv", 
+        "tls": "", 
+        "persist": false, 
+        "proxy": "", 
+        "authType": "", 
+        "x": 610, 
+        "y": 200, 
+        "wires": [
+            [
+                "cae3f9ad.271438", 
+                "b327f5f4.a67558"
+            ]
+        ]
+    }, 
+    {
+        "id": "cae3f9ad.271438", 
+        "type": "http response", 
+        "z": "3aaadb66.c89534", 
+        "name": "", 
+        "statusCode": "", 
+        "headers": { }, 
+        "x": 490, 
+        "y": 280, 
+        "wires": [ ]
+    }, 
+    {
+        "id": "b327f5f4.a67558", 
+        "type": "debug", 
+        "z": "3aaadb66.c89534", 
+        "name": "", 
+        "active": true, 
+        "tosidebar": true, 
+        "console": false, 
+        "tostatus": false, 
+        "complete": "false", 
+        "x": 570, 
+        "y": 380, 
+        "wires": [ ]
+    }
+]
